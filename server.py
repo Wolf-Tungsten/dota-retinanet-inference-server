@@ -86,7 +86,7 @@ class DetectorHandler(tornado.web.RequestHandler):
 
 if __name__ == '__main__':
     app=tornado.web.Application(
-        [(r'/api',DetectorHandler)])
+        [(r'/detect',DetectorHandler)])
     httpserver=tornado.httpserver.HTTPServer(app)
     httpserver.bind(4000)
     httpserver.start()
