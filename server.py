@@ -75,7 +75,7 @@ class DetectorHandler(tornado.web.RequestHandler):
         file_path = os.path.join(SERVER_TMP_UPLOAD, file_name)
         with open(file_path,'wb') as f:
             f.write(filesDict['image'][0]['body'])
-        result_name = await handle(file_path, SERVER_TMP_IMAGE, SERVER_TMP_CSV)
+        result_name = handle(file_path, SERVER_TMP_IMAGE, SERVER_TMP_CSV)
         self.write(result_name)
 
     def option(self):
