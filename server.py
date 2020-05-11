@@ -28,10 +28,7 @@ class DetectorHandler(tornado.web.RequestHandler):
         self.set_header('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE')
         image_name = self.get_argument('image', default=None)
         if image_name is not None:
-            ext = image_name.split('.')[-1]
-            if ext == 'jpg':
-                ext = 'jpeg'
-            self.set_header('content-type', 'image/'+ext)
+            self.set_header('content-type', 'image/png')
             image_path = os.path.join(SERVER_TMP_IMAGE, image_name+'.png-anno.png')
             with open(image_path, 'rb') as f:
                 self.write(f.read())
