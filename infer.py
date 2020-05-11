@@ -225,7 +225,7 @@ def merge(img: Image, raw_anno):
             score_c /= len(overlap_targets)
 
             result.append((int(x1_c), int(y1_c),
-                           int(x2_c), int(y2_c), score_c, type))
+                           int(x2_c), int(y2_c), score_c, base_kind))
 
     return result
 

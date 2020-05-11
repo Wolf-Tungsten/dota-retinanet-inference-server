@@ -38,9 +38,12 @@ class DetectorHandler(tornado.web.RequestHandler):
         else:
             csv_name = self.get_argument('csv')
             csv_path = os.path.join(SERVER_TMP_CSV, csv_name+'.png-anno.csv')
-            with open(csv_path, 'r') as f:
-                self.write(f.read())
-            return
+            if os.path.exists(csv_path):
+                with open(csv_path, 'r') as f:
+                    self.write(f.read())
+                return
+            else:
+                self.write('识别中...')
 
 
     async def post(self, *args, **kwargs):
