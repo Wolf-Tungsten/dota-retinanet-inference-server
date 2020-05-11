@@ -44,7 +44,7 @@ MODEL_SIZE = 224
 DEFAULT_OUTPUT_DIR = r'./tmp'
 
 # 模型文件路径
-MODEL_PATH = r'/root/keras-retinanet/snapshots/resnet50_csv_25.h5'
+MODEL_PATH = r'/root/train/resnet50_csv_50.h5'
 
 # load retinanet model
 model = models.load_model(MODEL_PATH, backbone_name='resnet50')
