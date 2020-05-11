@@ -80,7 +80,7 @@ class DetectorHandler(tornado.web.RequestHandler):
             f.write(filesDict['image'][0]['body'])
         self.write({"result_name":str(file_uuid)})
         self.finish()
-        handle(file_path, SERVER_TMP_IMAGE, SERVER_TMP_CSV)
+        await handle(file_path, SERVER_TMP_IMAGE, SERVER_TMP_CSV)
         
 
     def option(self):
