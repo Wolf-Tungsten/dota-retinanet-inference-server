@@ -321,7 +321,7 @@ def split_image(img, output_split_images=False):
     return result
 
 
-def infer(img):
+async def infer(img):
     bgr_image = cv2.cvtColor(img.cvimg, cv2.COLOR_RGB2BGR)
     bgr_image = preprocess_image(bgr_image)
     bgr_image, scale = resize_image(bgr_image)
