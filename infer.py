@@ -144,6 +144,7 @@ def handle(image_path, output_image_dir=DEFAULT_OUTPUT_DIR, output_annotation_di
         f_csv.writerow(['x1', 'y1', 'x2', 'y2', 'score', 'type'])
         f_csv.writerows(img.annotation)
         f.close()
+    return img.filename + '-anno'
 
 
 
