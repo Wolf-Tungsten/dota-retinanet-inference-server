@@ -89,7 +89,7 @@ class Image:
 Image.id_counter = 0
 
 
-def handle(image_path, output_image_dir=DEFAULT_OUTPUT_DIR, output_annotation_dir=''):
+async def handle(image_path, output_image_dir=DEFAULT_OUTPUT_DIR, output_annotation_dir=''):
     print('当前处理 ' + image_path + '...')
 
     cvimg = cv2.imread(image_path)
@@ -321,7 +321,7 @@ def split_image(img, output_split_images=False):
     return result
 
 
-async def infer(img):
+def infer(img):
     bgr_image = cv2.cvtColor(img.cvimg, cv2.COLOR_RGB2BGR)
     bgr_image = preprocess_image(bgr_image)
     bgr_image, scale = resize_image(bgr_image)
