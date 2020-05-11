@@ -26,18 +26,18 @@ class DetectorHandler(tornado.web.RequestHandler):
         self.set_header('Access-Control-Allow-Origin', '*') 
         self.set_header('Access-Control-Allow-Headers', 'x-requested-with')
         self.set_header('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE')
-        image_name = self.get_argument('image')
+        image_name = self.get_argument('image', default=None)
         if image_name is not None:
             ext = image_name.split('.')[-1]
             if ext == 'jpg':
                 ext = 'jpeg'
             self.set_header('content-type', 'image/'+ext)
-            image_path = os.path.join(SERVER_TMP_IMAGE, image_name+'.png')
+            image_path = os.path.join(SERVER_TMP_IMAGE, image_name+'.png-anno.png')
             with open(image_path, 'rb') as f:
                 self.write(f.read())
         else:
             csv_name = self.get_argument('csv')
-            csv_path = os.path.join(SERVER_TMP_CSV, csv_name+'.csv')
+            csv_path = os.path.join(SERVER_TMP_CSV, csv_name+'.png-anno.csv')
             with open(csv_path, 'r') as f:
                 self.write(f.read())
             return
@@ -75,8 +75,9 @@ class DetectorHandler(tornado.web.RequestHandler):
         file_path = os.path.join(SERVER_TMP_UPLOAD, file_name)
         with open(file_path,'wb') as f:
             f.write(filesDict['image'][0]['body'])
-        result_name = handle(file_path, SERVER_TMP_IMAGE, SERVER_TMP_CSV)
-        self.write(result_name)
+        self.write({"result_name":file_uuid})
+        handle(file_path, SERVER_TMP_IMAGE, SERVER_TMP_CSV)
+        
 
     def option(self):
         self.set_header('Access-Control-Allow-Origin', '*') 
