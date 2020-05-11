@@ -358,5 +358,3 @@ def infer(img):
 
     return result
 
-
-handle('./images/images/P0000.png')
